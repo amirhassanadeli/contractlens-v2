@@ -1,4 +1,3 @@
-
 from pathlib import Path
 
 import environ
@@ -28,6 +27,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "apps.accounts.apps.AccountsConfig",
+    "apps.chat.apps.ChatConfig",
+
 ]
 
 # Middleware
