@@ -1,10 +1,58 @@
-from django.urls import path
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter
+from .views import (
+    ContractViewSet,
+    ConversationViewSet,
+    MessageViewSet,
+    MessageActionViewSet,
+)
 
-from .api import chat
+router = DefaultRouter()
 
+router.register(
+    "contracts",
+    ContractViewSet,
+    basename="contracts",
+)
 
-app_name = "chat"
+router.register(
+    "conversations",
+    ConversationViewSet,
+    basename="conversations",
+)
 
 urlpatterns = [
-    path("", chat, name="message"),
+    path("", include(router.urls)),
+
+    path(
+        "conversations/<uuid:conversation_pk>/messages/",
+        MessageViewSet.as_view(
+            {
+                "get": "list",
+                "post": "create",
+            }
+        ),
+        name="conversation-messages",
+    ),
+
+    path(
+        "messages/<uuid:pk>/feedback/",
+        MessageActionViewSet.as_view(
+            {
+                "patch": "partial_update",
+            }
+        ),
+        name="message-feedback",
+    ),
+
+    path(
+        "messages/<uuid:pk>/regenerate/",
+        MessageActionViewSet.as_view(
+            {
+                "post": "regenerate",
+            }
+        ),
+        name="message-regenerate",
+    ),
+
 ]

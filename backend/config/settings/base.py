@@ -118,3 +118,19 @@ SPECTACULAR_SETTINGS = {
 }
 
 AUTH_USER_MODEL = "accounts.User"
+
+LLM_BASE_URL = env.str("LLM_BASE_URL", default="http://127.0.0.1:11434")
+
+LLM_MODEL = env.str("LLM_MODEL", default="")
+
+EMBEDDING_MODEL = env.str("EMBEDDING_MODEL", default="")
+
+TEMPERATURE = env.float("TEMPERATURE", default=0.2)
+
+CHUNK_SIZE = env.int("CHUNK_SIZE", default=500)
+CHUNK_OVERLAP = env.int("CHUNK_OVERLAP", default=120)
+
+TOP_K = env.int("TOP_K", default=5)
+FETCH_K = env.int("FETCH_K", default=25)
+
+CHROMA_DIR = BASE_DIR / "chroma_db"

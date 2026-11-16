@@ -33,7 +33,13 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Local SQLite database
+# Local RAG data
+backend/chroma_db/
+
+# Uploaded documents
+backend/media/
+
+# Local databases
 db.sqlite3
 db.sqlite3-journal
 db.sqlite3-wal

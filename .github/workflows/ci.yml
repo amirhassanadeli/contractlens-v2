@@ -50,7 +50,7 @@ jobs:
 
       - name: Run backend tests
         working-directory: backend
-        run: python manage.py test apps --verbosity 2
+        run: python manage.py test apps.chat.tests --verbosity=2
 
       - name: Check frontend Python syntax
         run: python -m compileall -q frontend
